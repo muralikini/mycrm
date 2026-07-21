@@ -75,11 +75,11 @@ export default async function TicketsPage() {
             <input type="text" name="title" placeholder="Short Title" required className="flex-2 rounded border border-gray-300 p-2 w-full" />
             <select name="clientId" required className="flex-1 rounded border border-gray-300 p-2">
               <option value="">Select Client...</option>
-              {clients.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+              {clients.map((c: any) => <option key={c.id} value={c.id}>{c.name}</option>)}
             </select>
             <select name="categoryId" required className="flex-1 rounded border border-gray-300 p-2">
               <option value="">Select Category...</option>
-              {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+              {categories.map((c: any) => <option key={c.id} value={c.id}>{c.name}</option>)}
             </select>
           </div>
           
