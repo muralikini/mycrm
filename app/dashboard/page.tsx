@@ -14,7 +14,7 @@ export default async function DashboardPage() {
   });
 
   // 3. Format the data so the Recharts library can read it
-  const chartData = statusGroups.map(group => ({
+  const chartData = statusGroups.map((group:any) => ({
     name: group.status,
     count: group._count.status
   }));
