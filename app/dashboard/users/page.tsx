@@ -83,7 +83,7 @@ export default async function UsersPage() {
           className="rounded border border-gray-300 bg-white p-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
         >
           <option value="">Assign to Client (Optional)</option>
-          {clients.map(client => (
+          {clients.map((client:any) => (
             <option key={client.id} value={client.id}>
               {client.name}
             </option>
@@ -111,7 +111,7 @@ export default async function UsersPage() {
               </div>
               <div className="mt-2 text-sm text-gray-500 sm:mt-0">
                 {user.clients.length > 0 
-                  ? `Assigned to: ${user.clients.map(c => c.name).join(', ')}` 
+                  ? `Assigned to: ${user.clients.map((c :any) => c.name).join(', ')}` 
                   : "No Client Assigned"}
               </div>
             </li>
