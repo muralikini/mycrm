@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// 1. The Users table (Admins and regular users)
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String   // We will encrypt this later!
+  role      Role     @default(USER)
+  clients   Client[] // Links users to specific clients
+  tickets   Ticket[] // Tickets created by this user
+  createdAt DateTime @default(now())
+}
+
+// 2. The Clients table
+model Client {
+  id        String   @id @default(uuid())
+  name      String
+  users     User[]   // Links clients back to users
+  tickets   Ticket[] // All tickets under this client
+  createdAt DateTime @default(now())
+}
+
+// 3. The Categories table (Task, Request, Incident, etc.)
+model Category {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  tickets   Ticket[] 
+}
+
+// 4. The Tickets table (The core issue tracker)
+model Ticket {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  status      Status   @default(ACTIVE)
+  deadline    DateTime? // The '?' means this is optional
+  createdAt   DateTime @default(now())
+
+  // These fields link the ticket to a specific User, Client, and Category
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String
+  client      Client   @relation(fields: [clientId], references: [id])
+  clientId    String
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  String
+}
+
+// Pre-defined options for roles and ticket statuses
+enum Role {
+  ADMIN
+  USER
+}
+
+enum Status {
+  ACTIVE
+  PENDING
+  COMPLETED
+  DELAYED
+  PAUSED
+  POSTPONED
+  CANCELLED
+}
