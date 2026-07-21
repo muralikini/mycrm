@@ -116,7 +116,7 @@ export default async function TicketsPage() {
           {tickets.length === 0 ? (
             <p className="p-6 text-gray-500 italic">No tickets raised yet.</p>
           ) : (
-            tickets.map((ticket) => (
+            tickets.map((ticket :any) => (
               <div key={ticket.id} className="p-6 hover:bg-gray-50">
                 <div className="mb-2 flex items-start justify-between">
                   <div>
