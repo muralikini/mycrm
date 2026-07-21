@@ -35,20 +35,22 @@ model Category {
 
 // 4. The Tickets table (The core issue tracker)
 model Ticket {
-  id          String   @id @default(uuid())
-  title       String
-  description String
-  status      Status   @default(ACTIVE)
-  deadline    DateTime? // The '?' means this is optional
-  createdAt   DateTime @default(now())
-
-  // These fields link the ticket to a specific User, Client, and Category
-  author      User     @relation(fields: [authorId], references: [id])
-  authorId    String
-  client      Client   @relation(fields: [clientId], references: [id])
-  clientId    String
-  category    Category @relation(fields: [categoryId], references: [id])
-  categoryId  String
+  id           String    @id @default(cuid())
+  title        String
+  description  String?
+  status       String    @default("ACTIVE")
+  deadline     DateTime?
+  reportedDate DateTime  @default(now())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @default(now()) @updatedAt
+  clientId     String
+  client       Client    @relation(fields: [clientId], references: [id])
+  categoryId   String
+  category     Category  @relation(fields: [categoryId], references: [id])
+  
+  // This restores the missing connection back to the User model!
+  userId       String?
+  user         User?     @relation(fields: [userId], references: [id])
 }
 
 // Pre-defined options for roles and ticket statuses

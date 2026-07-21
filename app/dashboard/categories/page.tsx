@@ -59,7 +59,7 @@ export default async function CategoriesPage() {
           {categories.length === 0 ? (
             <p className="italic text-gray-500">No categories added yet.</p>
           ) : (
-            categories.map((category) => (
+            categories.map((category: any) => (
               <li key={category.id} className="flex items-center justify-between rounded border bg-gray-50 p-4 text-gray-700">
                 <span className="font-medium">{category.name}</span>
               </li>

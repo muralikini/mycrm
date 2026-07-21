@@ -56,7 +56,7 @@ export default async function ClientsPage() {
           {clients.length === 0 ? (
             <p className="text-gray-500 italic">No clients added yet.</p>
           ) : (
-            clients.map((client) => (
+            clients.map((client : any) => (
               <li key={client.id} className="flex items-center justify-between rounded border bg-gray-50 p-4 text-gray-700">
                 <span className="font-medium">{client.name}</span>
                 <span className="text-xs text-gray-400">ID: {client.id.slice(0, 8)}...</span>

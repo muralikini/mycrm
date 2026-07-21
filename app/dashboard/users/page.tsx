@@ -101,7 +101,7 @@ export default async function UsersPage() {
       <div>
         <h3 className="mb-3 text-sm font-semibold uppercase text-gray-500">Active Users</h3>
         <ul className="space-y-2">
-          {users.map((user) => (
+          {users.map((user : any) => (
             <li key={user.id} className="flex flex-col rounded border bg-gray-50 p-4 text-gray-700 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <span className="font-medium">{user.email}</span>
